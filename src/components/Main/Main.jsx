@@ -30,6 +30,9 @@ function Main({
 
   // Função para abrir popup centralizada no Main
   function openPopup(type, card) {
+    console.log(popup, "poupe");
+    console.log(type, "tipo");
+    console.log(card, "cardê");
     setPopup(type);
     if (type === "removeCard") {
       setPopupCard(card);
@@ -98,7 +101,7 @@ function Main({
       {/* Popups de Imagem e Formulários renderizados no Main */}
       <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />
 
-      {popup && popups[popup] && (
+      {popup && (
         <Popup title={popups[popup].title} onClose={closePopup}>
           {popups[popup].content}
         </Popup>
