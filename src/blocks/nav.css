@@ -1,0 +1,46 @@
+/* NAV */
+.nav {
+  max-width: 880px;
+  height: 74px;
+  /* border: solid red; */
+
+  margin-top: 45px;
+  margin-bottom: 40px;
+  border-bottom: solid #545454 1px;
+  /* border: solid red; */
+  display: flex;
+
+  align-items: center;
+}
+
+.nav__logo {
+  width: 173px;
+  height: 33px;
+}
+
+.auth_login {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: auto;
+
+  color: white;
+
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 715px) {
+  .nav {
+    width: 100%;
+    height: auto;
+
+    margin-top: 28px;
+  }
+
+  .nav__logo {
+    margin-left: 27px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,135 @@
+.popup {
+  z-index: 2;
+  position: fixed;
+  opacity: 1;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /* CORREÇÃO CRÍTICA: Adiciona dimensões de overlay e display flex para cobrir 100% e centralizar */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__enabled {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.popup__little-buttons {
+  border-radius: 10px;
+}
+
+.popup__closebutton {
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/footer-images/Close\ Icon.png);
+  background-color: transparent;
+  border: none;
+  background-size: cover;
+  cursor: pointer;
+
+  position: absolute;
+
+  top: -42px;
+  right: -49px;
+}
+
+.popup__container {
+  background-color: #fff;
+  width: 430px;
+  padding: 34px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* EFEITO */
+
+  transform: scale(0.4);
+  animation: scaleIn 300ms ease forwards;
+
+  z-index: 7;
+}
+
+@keyframes scaleIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+.popup__enabled .popup__container {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.popup__title {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  color: #000000;
+  margin-bottom: 34px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.popup__status-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 40px;
+}
+
+.popup__input {
+  display: flex;
+  width: 100%;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+
+  border: none;
+  border-bottom: 1px solid #000000;
+}
+.popup__save {
+  width: 358px;
+  height: 50px;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+
+  margin-bottom: 36px;
+
+  background-color: #000000;
+  color: #ffff;
+}
+
+/* colocar a borda pra baixo: padding bottom ou altura fica height: 48px */
+
+.popup__error {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: red;
+
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: block;
+}

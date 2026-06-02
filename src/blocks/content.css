@@ -1,0 +1,166 @@
+* .content {
+  width: 100%;
+
+  column-gap: 17px;
+  row-gap: 20px;
+  justify-content: center;
+
+  margin-bottom: 67px;
+
+  /* display: flex; */
+  /* border: solid red; */
+
+  /* background-color: red; */
+}
+
+.content__wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  gap: 40px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 3%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.content__images {
+  background-size: cover;
+  overflow: hidden;
+  width: 282px;
+  height: 282px;
+
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.content__images:hover {
+  opacity: 0.8;
+}
+
+.content__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  padding-left: 21px;
+  padding-right: 21px;
+
+  width: 100%;
+}
+
+.content__text {
+  color: #000;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+
+  overflow: hidden; /* corta o que passar */
+  white-space: nowrap; /* não deixa quebrar linha */
+  text-overflow: ellipsis; /* coloca "..." no final */
+  max-width: 200px;
+}
+
+.content__icon {
+  background-image: url(../images/main-images/heart-icon.svg);
+  background-color: transparent;
+  border: none;
+
+  width: 31px; /* tive que aumentar o tamanho se comparado ao original no figma, falar com professor*/
+  height: 19px;
+  background-repeat: no-repeat;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  transition:
+    background-image 0.3s ease,
+    transform 0.2s ease;
+}
+
+.content__icon-enabled {
+  background-image: url(../images/main-images/heart-icon-red.png);
+
+  animation: pulse 0.3s forwards;
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+.content__icon:hover {
+  transform: scale(1.2);
+}
+
+.popup__delete-buton {
+  background-image: url(../images/main-images/trash.png);
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+
+  width: 30px;
+  height: 31px;
+  position: absolute;
+  right: 4px;
+  top: 12px;
+  cursor: pointer;
+  z-index: 1;
+  transition: opacity 0.6s ease; /* efeito suave */
+  transition:
+    background-image 0.3s ease,
+    transform 0.2s ease;
+}
+
+.popup__delete-buton:hover {
+  transform: scale(1.2);
+}
+
+.template__wrapper:hover .popup__delete-buton {
+  opacity: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 1));
+}
+
+/* display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center; */
+
+/* MOBILE */
+@media screen and (max-width: 715px) {
+  .content {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content__wrap {
+    justify-content: center;
+  }
+
+  .content__container {
+    grid-template-columns: 1fr;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
