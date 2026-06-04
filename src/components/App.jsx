@@ -21,7 +21,19 @@ function App() {
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Popup de feedback
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+
+  // Popups gerais
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
+  const [isNewCardOpen, setIsNewCardOpen] = useState(false);
+  const [isRemoveCardOpen, setIsRemoveCardOpen] = useState(false);
+
+  const [popup, setPopup] = useState(null);
+  const [popupCard, setPopupCard] = useState(null);
+
   const navigate = useNavigate();
 
   // ______________________
@@ -31,11 +43,11 @@ function App() {
       .register(email, password)
       .then(() => {
         setIsSuccess(true);
-        setIsInfoTooltipOpen(true);
+        openPopup("infoTooltip");
       })
       .catch((err) => {
         setIsSuccess(false);
-        setIsInfoTooltipOpen(true);
+        openPopup("infoTooltip");
         console.log(err, "errouu");
       });
   }
@@ -56,6 +68,16 @@ function App() {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
     navigate("/signin");
+  }
+  function openPopup(type, card = null) {
+    console.log(type, "popup aberto");
+    setPopup(type);
+    setPopupCard(card);
+  }
+
+  function closePopup() {
+    setPopup(null);
+    setPopupCard(null);
   }
 
   // Estados de controle de popup REMOVIDOS daqui
@@ -168,6 +190,10 @@ function App() {
                       onUpdateAvatar={handleUpdateAvatar}
                       onAddCard={handleAddCard}
                       onCardDelete={handleCardDelete}
+                      popup={popup}
+                      openPopup={openPopup}
+                      closePopup={closePopup}
+                      popupCard={popupCard}
                     />
                     <Footer />
                   </>
@@ -179,8 +205,8 @@ function App() {
       </div>
       <InfoTooltip
         isSuccess={isSuccess}
-        isOpen={isInfoTooltipOpen}
-        onClose={() => setIsInfoTooltipOpen(false)}
+        isOpen={popup === "infoTooltip"}
+        onClose={closePopup}
       />
     </CurrentUserContext.Provider>
   );

@@ -13,7 +13,7 @@ function Login({ onLogin }) {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <h2 className="popup__title auth__title"> Entre no Araound the U.S</h2>
+      <h2 className="popup__title auth__title"> Entre no Around the U.S</h2>
       <input
         className="popup__input auth__input
 "

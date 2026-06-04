@@ -2,6 +2,7 @@ import Popup from "../Main/Popup/Popup";
 import successImage from "../../images/popup-images/successImage.png";
 import errorImage from "../../images/popup-images/errorImage.png";
 function InfoTooltip({ onClose, isSuccess, isOpen }) {
+  if (!isOpen) return null;
   return (
     <Popup title="" onClose={onClose} isOpen={isOpen}>
       <img

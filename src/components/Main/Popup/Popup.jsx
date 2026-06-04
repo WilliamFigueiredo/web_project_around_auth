@@ -1,7 +1,6 @@
 export default function Popup(props) {
   //children é o conteúdo de popup
-  const { title, children, onClose, isOpen } = props;
-  if (!isOpen) return null;
+  const { title, children, onClose } = props;
   return (
     <div>
       <div id="popup__editprofile" className="popup popup__little-buttons">

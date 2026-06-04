@@ -20,30 +20,13 @@ function Main({
   onUpdateAvatar,
   onAddCard,
   onCardDelete,
+  popup,
+  popupCard,
+  openPopup,
+  closePopup,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const [selectedCard, setSelectedCard] = useState(null);
-
-  // Estados dos popups centralizados no Main
-  const [popup, setPopup] = useState(null);
-  const [popupCard, setPopupCard] = useState(null); // armazena card pra remoção
-
-  // Função para abrir popup centralizada no Main
-  function openPopup(type, card) {
-    console.log(popup, "poupe");
-    console.log(type, "tipo");
-    console.log(card, "cardê");
-    setPopup(type);
-    if (type === "removeCard") {
-      setPopupCard(card);
-    }
-  }
-
-  // Função para fechar popup centralizada no Main
-  function closePopup() {
-    setPopup(null);
-    setPopupCard(null);
-  }
 
   // Objeto de configuração dos popups (agora com as funções de handler locais/props)
   const popups = {
@@ -79,7 +62,10 @@ function Main({
         username={currentUser.name}
         about={currentUser.about}
         onClickButtonAdd={() => openPopup("newCard")}
-        onClickButtonEdit={() => openPopup("editProfile")}
+        onClickButtonEdit={() => {
+          console.log("clicou editar perfil");
+          openPopup("editProfile");
+        }}
         onClickAvatarImage={() => openPopup("editAvatar")}
         avatarImage={currentUser.avatar}
       />
