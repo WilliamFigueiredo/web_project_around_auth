@@ -20,6 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Popup de feedback
@@ -94,17 +95,23 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
 
-    if (token) {
-      auth
-        .checkToken(token)
-        .then((data) => {
-          setLoggedIn(true);
-        })
-        .catch((err) => {
-          console.log(err);
-          localStorage.removeItem("jwt");
-        });
+    if (!token) {
+      setIsCheckingAuth(false);
+      return;
     }
+
+    auth
+      .checkToken(token)
+      .then(() => {
+        setLoggedIn(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        localStorage.removeItem("jwt");
+      })
+      .finally(() => {
+        setIsCheckingAuth(false);
+      });
   }, []);
 
   // Atualiza perfil - Assegure-se de que closePopup seja chamado no Main após o sucesso, se necessário, ou passe uma callback. Aqui, simplifiquei assumindo que o Main gerencia o fechamento após chamar a prop.
@@ -180,7 +187,10 @@ function App() {
             <Route
               path="/"
               element={
-                <ProtectedRoute loggedIn={loggedIn}>
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  isCheckingAuth={isCheckingAuth}
+                >
                   <>
                     <Nav page="home" onSignOut={handleSignOut} />{" "}
                     <Main

@@ -33,7 +33,7 @@ export function checkToken(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
-      "Content-Type": "application.json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`, //perguntar sobre essa linha no co-learning //
     },
   }).then((res) => res.json());
