@@ -24,13 +24,8 @@ function App() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Popup de feedback
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
   // Popups gerais
-  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
-  const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
-  const [isNewCardOpen, setIsNewCardOpen] = useState(false);
-  const [isRemoveCardOpen, setIsRemoveCardOpen] = useState(false);
 
   const [popup, setPopup] = useState(null);
   const [popupCard, setPopupCard] = useState(null);
@@ -62,7 +57,7 @@ function App() {
 
         navigate("/");
       })
-      .catch((err) => {});
+      .catch(console.error);
   }
 
   function handleSignOut() {
@@ -96,7 +91,7 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     if (!token) {
-      setIsCheckingAuth(false);
+      queueMicrotask(() => setIsCheckingAuth(false));
       return;
     }
 
